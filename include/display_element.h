@@ -1,17 +1,19 @@
 
 #pragma once
-#include "../include/application.h"
 
 namespace glacier {
 
+	class Application;
+
 	class DisplayElement {
 	public:
-		DisplayElement(Application app);
+		DisplayElement() {};
 
+		virtual void init(Application* app) { m_app = app; };
 		virtual void render();
 
-	private:
-		Application m_app;
+	protected:
+		Application* m_app;
 
 	};
 

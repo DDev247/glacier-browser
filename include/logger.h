@@ -50,7 +50,7 @@ namespace glacier {
 		}
 	};
 
-	static class Logger {
+	class Logger {
 	public:
 		static void add(Log::Level level, std::string source, std::string message);
 

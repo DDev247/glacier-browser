@@ -3,16 +3,18 @@
 
 glacier::ColorPalette glacier::Colors::m_currentPalette = glacier::ddevDarkPalette;
 
-glm::vec3 glacier::Colors::getColor(glacier::ColorCode code) {
+glm::vec4 glacier::Colors::getColor(glacier::ColorCode code, int alpha) {
     if (m_currentPalette.contains(code)) {
-        return m_currentPalette.at(code);
+        glm::vec4 c = m_currentPalette.at(code);
+        c.a = alpha;
+        return c;
     }
 
-    return { 0xff, 0x00, 0xff };
+    return { 0xff, 0x00, 0xff, 0xff };
 }
 
-glm::vec3 glacier::Colors::getColorGL(glacier::ColorCode code) {
-    return getColor(code) / 255.0f;
+glm::vec4 glacier::Colors::getColorGL(glacier::ColorCode code, float alpha) {
+    return getColor(code, alpha * 255) / 255.0f;
 }
 
 /*glacier::ColorPalette glacier::ddevDarkPalette = {

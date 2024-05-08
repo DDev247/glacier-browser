@@ -4,3 +4,18 @@
 [submodule "dependencies/glm"]
 	path = dependencies/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "dependencies/freetype"]
+	path = dependencies/freetype
+	url = https://gitlab.freedesktop.org/freetype/freetype.git
+[submodule "dependencies/OpenGL-Registry.git"]
+	path = dependencies/OpenGL-Registry.git
+	url = https://github.com/KhronosGroup/OpenGL-Registry.git
+[submodule "dependencies/OpenGL-Registry"]
+	path = dependencies/OpenGL-Registry
+	url = https://github.com/KhronosGroup/OpenGL-Registry.git
+[submodule "dependencies/EGL-Registry"]
+	path = dependencies/EGL-Registry
+	url = https://github.com/KhronosGroup/EGL-Registry.git
+[submodule "dependencies/glad"]
+	path = dependencies/glad
+	url = https://github.com/Dav1dde/glad.git

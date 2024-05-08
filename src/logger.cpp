@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#if _DEBUG
+#if GLACIER_DEBUG
 glacier::Log::Level glacier::Logger::minimumLevel = glacier::Log::Level::Debug;
 #else
 glacier::Log::Level glacier::Logger::minimumLevel = glacier::Log::Level::Info;
