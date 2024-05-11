@@ -67,11 +67,15 @@ endif()
 
 # TODO: Make a better system, file(COPY) only works on configure time, not on build time
 
-add_custom_command(TARGET glacier POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/shaders/" "${CMAKE_BINARY_DIR}/shaders"
-    COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/fonts/" "${CMAKE_BINARY_DIR}/fonts"
-    COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/textures/" "${CMAKE_BINARY_DIR}/textures"
-)
+file(COPY "${PROJECT_SOURCE_DIR}/shaders/" DESTINATION "${CMAKE_BINARY_DIR}/shaders")
+file(COPY "${PROJECT_SOURCE_DIR}/fonts/" DESTINATION "${CMAKE_BINARY_DIR}/fonts")
+file(COPY "${PROJECT_SOURCE_DIR}/textures/" DESTINATION "${CMAKE_BINARY_DIR}/textures")
+
+#add_custom_command(TARGET glacier POST_BUILD
+    #COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/shaders/" "$<TARGET_FILE_DIR:glacier>/shaders"
+    #COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/fonts/" "$<TARGET_FILE_DIR:glacier>/fonts"
+    #COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/textures/" "$<TARGET_FILE_DIR:glacier>/textures"
+#)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

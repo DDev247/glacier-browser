@@ -118,7 +118,7 @@ void glacier::Application::initWindow() {
 
 	/* --------------------------- Initialise elements -------------------------- */
 	
-	m_colorTest.init(this);
+	//m_colorTest.init(this);
 	m_navigation.init(this);
 }
 
@@ -742,28 +742,7 @@ void glacier::Application::render() {
 	m_time += m_deltaTime.count();
 	m_frameStart = std::chrono::high_resolution_clock::now();
 
-	/* ------------ Disable previous shader (to avoid texture errors) ----------- */
-	glUseProgram(0);
-	
-	glm::vec4 cc = Colors::getColorGL(ColorCode::Base0);
-	glClearColor(cc.r, cc.g, cc.b, cc.a);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glFrontFace(GL_CCW);
-	
-	m_projection = glm::ortho(0.0f, (float)m_windowSize.x, (float)m_windowSize.y, 0.0f);
-
-	//m_colorTest.render();
-	m_navigation.render();
-	/*glm::vec4 colorr = { std::sin(m_time * 2.0), std::sin(2 + m_time * 2.0), std::sin(4 + m_time * 2.0), 1.0f };
-	glm::vec4 colorr1 = { std::sin(2 + m_time * 1.0), std::sin(4 + m_time * 1.0), std::sin(6 + m_time * 1.0), 1.0f };
-	glm::vec4 colorr2 = { std::sin(4 + m_time * 4.0), std::sin(6 + m_time * 4.0), std::sin(8 + m_time * 4.0), 1.0f };
-	glm::vec4 colorr3 = { std::sin(6 + m_time * 3.0), std::sin(8 + m_time * 3.0), std::sin(10 + m_time * 3.0), 1.0f };
-	glm::vec4 colorr4 = { std::sin(8 + m_time * 6.0), std::sin(10 + m_time * 6.0), std::sin(12 + m_time * 6.0), 1.0f };
-	drawText("ASK", m_roboto, { 50, 50 }, colorr, 384);
-	drawText("ASK...", m_roboto, { 50, 450 }, colorr1, 128);
-	drawText("Ask...", m_roboto, { 50, 600 }, colorr2, 90);
-	drawText("ask...", m_roboto, { 50, 700 }, colorr3, 40);
-	drawText("ask", m_roboto, { 50, 750 }, colorr4, 16);*/
+	/* -------------------------- Check for mouse input ------------------------- */
 
 	if(m_mouse.left && !m_mouseFirstFrame.left && !m_mouseHold.left) {
 		m_mouseFirstFrame.left = true;
@@ -800,6 +779,20 @@ void glacier::Application::render() {
 		m_mouseFirstFrame.right = false;
 		m_mouseHold.right = false;
 	}
+
+	/* ------------ Disable previous shader (to avoid texture errors) ----------- */
+	glUseProgram(0);
+	
+	// Clear buffer
+	glm::vec4 cc = Colors::getColorGL(ColorCode::Base0);
+	glClearColor(cc.r, cc.g, cc.b, cc.a);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glFrontFace(GL_CCW); // ?
+	
+	m_projection = glm::ortho(0.0f, (float)m_windowSize.x, (float)m_windowSize.y, 0.0f);
+
+	//m_colorTest.render();
+	m_navigation.render();
 
 	// cursor
 	drawRectFill({ m_cursor.x - 5, m_cursor.y - 5 }, { 10, 10 }, Colors::getColorGL(ColorCode::Overlay0));

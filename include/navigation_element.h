@@ -27,6 +27,10 @@ namespace glacier {
 		ButtonElement m_refreshButton;
 
 		InputElement m_addressBar;
+
+		ButtonElement m_homeButton;
+		ButtonElement m_downloadsButton;
+		ButtonElement m_menuButton;
 	};
 
 }
